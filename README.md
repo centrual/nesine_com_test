@@ -1,4 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nesine.com Test
+
+### React Case Study:
+
+---
+
+* Mail içerisinde gönderilen "bulten_data.json" datası kullanılarak 3000 farklı event alt alta listelenecek.
+* [Videoda](https://streamable.com/oldp4d) örneklendiği gibi oranların üzerine tıklandığında sepete eklenecek ve aynı
+  orana tekrar tıklandığında sepetten çıkarılacak.
+* Oran sepete eklendiğinde, eklenen orana sepette yanıp sönme efekti verilecek. (Seçilen oranın sepette background rengi
+  değişebilir)
+* Uygulama responsive olmalı ve 375px çözünürlüğüne kadar destek vermelidir. (Mobil görünümde sepet sayfanın herhangi
+  bir yerinde sticky açılır-kapanır olabilir)
+* Uygulama eski bir mobil cihazdan test edileceğinden, 3000 elemanlı datanın ekranda render olma maliyetlerinin
+  düşünülmesi ve gerekli optimizasyonların yapılması gerekiyor.
+
+### Gerekenler:
+
+---
+
+* React Hooks kullanılması
+* EcmaScript6 + Eslint (Airbnb)
+* Sass
+* Webpack
+* Context API / Redux
+* Projenin github üzerinden gönderilmesi
+
+### + Olarak Değerlendirilecekler:
+
+---
+
+* Render maliyetini düşürecek performans çözümleri
+* CRA (Create React App) kullanılmaması
+* Tercihen Context API kullanılması
+* Unit test (Jest)
+* Server-side rendering (SSR)
+
+---
+
+## Başlarken:
+
+Merhaba Nesine.com ekibi 🖐,
+
+Kullandığınız paket yöneticisi uygulamasına göre aşağıdaki komutlardan uygun olanı kullanınız:
+
+`yarn install` veya `npm install`
+
+Paketlerin yüklenmesi tamamlandıktan sonra aşağıdaki komutu kullanarak commit öncesinde typecheck ve lint işlemlerinin
+otomatik çalışmasını sağlayabilirsiniz:
+
+`yarn husky install` veya `npm husky install`
+
+Proje WebStorm IDE'si içerisinde geliştirilmiştir.
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped
+with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 

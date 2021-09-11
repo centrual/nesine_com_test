@@ -1,4 +1,12 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
+  webpack5: true,
+  experimental: true,
+  compress: true,
+  poweredByHeader: false,
 }
+
+module.exports = nextConfig
