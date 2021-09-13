@@ -12,7 +12,11 @@ const Home: NextPage = () => {
       </Head>
 
       {/*<Grid*/}
-      {/*  cellRenderer={({ columnIndex, key, rowIndex, style }) => <div key={key} style={style}>...</div>}*/}
+      {/*  cellRenderer={({ columnIndex, key, rowIndex, style }) => (*/}
+      {/*    <div key={key} style={style}>*/}
+      {/*      ...*/}
+      {/*    </div>*/}
+      {/*  )}*/}
       {/*  columnCount={4}*/}
       {/*  columnWidth={({ index }) => 100}*/}
       {/*  height={600}*/}
