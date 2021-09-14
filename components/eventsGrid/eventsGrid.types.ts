@@ -22,24 +22,26 @@ interface OutcomeGroup {
   outcomes: Outcome[]
 }
 
-interface Match {
+interface Event {
   matchId: string
+  matchCode: number
+  unixTimestamp: number
   date: string
   time: string
   day: string
   leagueName: string
-  teamName: string
+  competitors: string
   outcomeGroups: OutcomeGroup[]
 }
 
 interface FixtureDay {
   date: string
   dayName: string
-  matches: Match[]
+  events: Event[]
 }
 
-interface MatchesGridProps {
+interface EventsGridProps {
   fixture: FixtureDay[]
 }
 
-export type { Outcome, OutcomeGroup, Match, FixtureDay, MatchesGridProps }
+export type { Outcome, OutcomeGroup, Event, FixtureDay, EventsGridProps }

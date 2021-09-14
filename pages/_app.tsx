@@ -1,8 +1,9 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { CouponProvider } from '@providers/couponProvider'
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Head>
@@ -10,8 +11,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <title>Merhaba Nesine.com</title>
       </Head>
 
-      <Component {...pageProps} />
+      <CouponProvider>
+        <Component {...pageProps} />
+      </CouponProvider>
     </>
   )
 }
-export default MyApp
+export default App
