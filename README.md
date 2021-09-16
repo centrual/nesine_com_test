@@ -100,5 +100,5 @@ yarn lint
 
 ### Ek Bilgiler
 
-* [Next.js](https://nextjs.org/) ile oluşturulmuştur.
-* WebStorm IDE'si içerisinde geliştirilmiştir.
+- [Next.js](https://nextjs.org/) ile oluşturulmuştur.
+- WebStorm IDE'si içerisinde geliştirilmiştir.
