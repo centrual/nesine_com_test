@@ -61,6 +61,7 @@ const Index: NextPage = () => {
 
   useEffect(() => {
     loadEvents()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
