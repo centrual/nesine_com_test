@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react'
-import { Event } from '@components/eventsGrid/eventsGrid.types'
+import { Event } from '@atoms/event/event.types'
 
 interface SelectedEvent {
   code: number
@@ -14,7 +14,12 @@ interface CouponProviderProps {
   cumulativeRate: string
   selectedEvents: SelectedEvent[]
   setSelectedEvents: Dispatch<SetStateAction<SelectedEvent[]>>
-  addEvent: (event: Event, outcomeGroupId: string, outcomeId: string) => void
+  isSelected: (
+    event: Event,
+    outcomeGroupId: string,
+    outcomeId: string
+  ) => boolean
+  toggleEvent: (event: Event, outcomeGroupId: string, outcomeId: string) => void
   removeEvent: (eventCode: number) => void
 }
 

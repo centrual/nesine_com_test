@@ -2,12 +2,8 @@ import type {
   DBEventOutcome,
   DBEventOutcomeGroup,
   DBEventsProjection,
-} from '@api/getMatches.types'
-import type {
-  Event,
-  Outcome,
-  OutcomeGroup,
-} from '@components/eventsGrid/eventsGrid.types'
+} from '@api/getEvents.types'
+import type { Event, Outcome, OutcomeGroup } from '@atoms/event/event.types'
 import { SelectedEvent } from '@providers/couponProvider.types'
 
 const outcomeMap = (outcome: DBEventOutcome): Outcome => {

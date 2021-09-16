@@ -1,7 +1,9 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { CouponProvider } from '@providers/couponProvider'
+
+import '../styles/globals.css'
+import 'react-virtualized/styles.css'
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
