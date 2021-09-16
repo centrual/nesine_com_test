@@ -1,0 +1,22 @@
+.coupon {
+  position: fixed;
+  width: 350px;
+  height: 40px;
+  bottom: 0;
+  left: 50%;
+  margin-left: -175px;
+  background: #FFF;
+  transition: height 250ms ease-in-out;
+
+  &.opened {
+    height: 440px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .coupon {
+    right: 32px;
+    left: auto;
+    margin-left: 0;
+  }
+}

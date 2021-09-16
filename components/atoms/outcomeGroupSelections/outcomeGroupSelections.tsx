@@ -1,13 +1,15 @@
 import { memo, useContext } from 'react'
 import type { OutcomeGroupSelectionsProps } from './outcomeGroupSelections.types'
 import { EventSelectionButton } from '@atoms/eventSelectionButton/eventSelectionButton'
-import { CouponContext } from '@providers/couponProvider'
 import { Event, Outcome, OutcomeGroup } from '@atoms/event/event.types'
-import { CouponProviderProps } from '@providers/couponProvider.types'
+import { CouponSelectionProviderProps } from '@providers/couponSelectionProvider/couponSelectionProvider.types'
+import { CouponSelectionContext } from '@providers/couponSelectionProvider/couponSelectionProvider'
 
 const OutcomeGroupSelections = memo<OutcomeGroupSelectionsProps>((props) => {
   const { event, outcomeGroup } = props
-  const couponContext = useContext(CouponContext) as CouponProviderProps
+  const couponContext = useContext(
+    CouponSelectionContext
+  ) as CouponSelectionProviderProps
 
   const toggle = (
     event: Event,

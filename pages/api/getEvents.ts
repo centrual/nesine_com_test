@@ -15,8 +15,6 @@ const getEventsHandler = async (
   const data = req.query as unknown as GetMatchesRequestData
   const fetchAfterEventCode = parseInt(data.lastEventCode)
 
-  console.log(fetchAfterEventCode)
-
   const connection = await mongoDbConnection
   const collection = connection
     .db('nesine_data')

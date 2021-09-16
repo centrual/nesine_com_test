@@ -1,28 +1,35 @@
 import React, { createContext, useEffect, useState } from 'react'
 import {
-  CouponProviderProps,
+  CouponSelectionProviderProps,
   SelectedEvent,
-} from '@providers/couponProvider.types'
+} from '@providers/couponSelectionProvider/couponSelectionProvider.types'
 import type { Event } from '@atoms/event/event.types'
 import BigNumber from 'bignumber.js'
-import { mapEventToSelectedEvent } from '../lib/mappers/eventMapper'
+import { mapEventToSelectedEvent } from '../../lib/mappers/eventMapper'
 
-export const CouponContext = createContext<Partial<CouponProviderProps>>({})
+export const CouponSelectionContext = createContext<
+  Partial<CouponSelectionProviderProps>
+>({})
 
-const CouponProvider = ({
+const CouponSelectionProvider = ({
   children,
-}: Partial<CouponProviderProps>): JSX.Element => {
+}: Partial<CouponSelectionProviderProps>): JSX.Element => {
   const [cumulativeRate, setCumulativeRate] = useState<string>('0')
   const [selectedEvents, setSelectedEvents] = useState<SelectedEvent[]>([])
+  const [isOpened, setIsOpened] = useState(false)
 
   useEffect(() => {
-    const calculatedCumulativeRate = new BigNumber(0)
+    let calculatedCumulativeRate = new BigNumber(0)
 
     selectedEvents.forEach((event: SelectedEvent) => {
       if (calculatedCumulativeRate.eq(0)) {
-        calculatedCumulativeRate.plus(event.selectedOutcomeRate)
+        calculatedCumulativeRate = calculatedCumulativeRate.plus(
+          event.outcomeRate
+        )
       } else {
-        calculatedCumulativeRate.multipliedBy(event.selectedOutcomeName)
+        calculatedCumulativeRate = calculatedCumulativeRate.multipliedBy(
+          event.outcomeRate
+        )
       }
     })
 
@@ -58,8 +65,8 @@ const CouponProvider = ({
       const existingEvent = selectedEvents[existingEventIndex]
 
       if (
-        existingEvent.selectedOutcomeGroupId === outcomeGroupId &&
-        existingEvent.selectedOutcomeId === outcomeId
+        existingEvent.outcomeGroupId === outcomeGroupId &&
+        existingEvent.outcomeId === outcomeId
       ) {
         removeEvent(event.matchCode)
       } else {
@@ -78,13 +85,13 @@ const CouponProvider = ({
     return selectedEvents.some(
       (f) =>
         f.code === event.matchCode &&
-        f.selectedOutcomeGroupId === outcomeGroupId &&
-        f.selectedOutcomeId === outcomeId
+        f.outcomeGroupId === outcomeGroupId &&
+        f.outcomeId === outcomeId
     )
   }
 
   return (
-    <CouponContext.Provider
+    <CouponSelectionContext.Provider
       value={{
         cumulativeRate,
         selectedEvents,
@@ -92,11 +99,13 @@ const CouponProvider = ({
         isSelected,
         toggleEvent,
         removeEvent,
+        isOpened,
+        setIsOpened,
       }}
     >
       {children}
-    </CouponContext.Provider>
+    </CouponSelectionContext.Provider>
   )
 }
 
-export { CouponProvider }
+export { CouponSelectionProvider }

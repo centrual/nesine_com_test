@@ -1,0 +1,37 @@
+.couponHeader {
+  background: #BBB;
+  font-size: 16px;
+  color: #111;
+  height: 40px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 1px solid #666;
+  transition: background 250ms ease-in;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: #DDD;
+  }
+
+  &.opened {
+    background: #FFF;
+  }
+
+  .selectedEventCount {
+    padding: 0 10px;
+    flex: 1;
+  }
+
+  .rate {
+    flex: 0 0 100px;
+    text-align: center;
+  }
+
+  .openClose {
+    flex: 0 0 80px;
+    font-size: 12px;
+    text-align: center;
+  }
+}

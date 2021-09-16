@@ -4,7 +4,7 @@ import type {
   DBEventsProjection,
 } from '@api/getEvents.types'
 import type { Event, Outcome, OutcomeGroup } from '@atoms/event/event.types'
-import { SelectedEvent } from '@providers/couponProvider.types'
+import { SelectedEvent } from '@providers/couponSelectionProvider/couponSelectionProvider.types'
 
 const outcomeMap = (outcome: DBEventOutcome): Outcome => {
   return {
@@ -61,10 +61,15 @@ const mapEventToSelectedEvent = (
 
   return {
     code: event.matchCode,
-    selectedOutcomeId: optionId,
-    selectedOutcomeName: optionName,
-    selectedOutcomeRate: rate,
-    selectedOutcomeGroupId: foundOutcomeGroup.groupId,
+    outcomeId: optionId,
+    outcomeName: optionName,
+    outcomeRate: rate,
+    outcomeGroupId: foundOutcomeGroup.groupId,
+    time: event.time,
+    date: event.date,
+    competitors: event.competitors,
+    outcomeGroupName: foundOutcomeGroup.name,
+    dayName: event.day,
   }
 }
 

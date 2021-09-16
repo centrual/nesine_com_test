@@ -3,13 +3,18 @@ import { Event } from '@atoms/event/event.types'
 
 interface SelectedEvent {
   code: number
-  selectedOutcomeGroupId: string
-  selectedOutcomeId: string
-  selectedOutcomeName: string
-  selectedOutcomeRate: string
+  outcomeGroupId: string
+  outcomeGroupName: string
+  outcomeId: string
+  outcomeName: string
+  outcomeRate: string
+  competitors: string
+  time: string
+  date: string
+  dayName: string
 }
 
-interface CouponProviderProps {
+interface CouponSelectionProviderProps {
   children: ReactNode
   cumulativeRate: string
   selectedEvents: SelectedEvent[]
@@ -21,6 +26,8 @@ interface CouponProviderProps {
   ) => boolean
   toggleEvent: (event: Event, outcomeGroupId: string, outcomeId: string) => void
   removeEvent: (eventCode: number) => void
+  isOpened: boolean
+  setIsOpened: Dispatch<SetStateAction<boolean>>
 }
 
-export type { SelectedEvent, CouponProviderProps }
+export type { SelectedEvent, CouponSelectionProviderProps }

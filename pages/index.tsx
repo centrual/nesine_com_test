@@ -7,6 +7,7 @@ import { flushSync } from 'react-dom'
 import { EventListRowProps } from '@molecules/eventListRow/eventListRow.types'
 import { createFixture } from '../lib/reducers/fixtureCreator'
 import { EventList } from '@organisms/eventList/eventList'
+import { Coupon } from '@organisms/coupon/coupon'
 
 const Index: NextPage = () => {
   const [isEventsLoading, setIsEventsLoading] = useState(true)
@@ -62,8 +63,6 @@ const Index: NextPage = () => {
     loadEvents()
   }, [])
 
-  console.log('RENDER')
-
   return (
     <>
       <Head>
@@ -77,6 +76,8 @@ const Index: NextPage = () => {
         isNextPageLoading={isEventsLoading}
         loadNextPage={loadEvents}
       />
+
+      <Coupon />
     </>
   )
 }

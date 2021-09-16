@@ -1,0 +1,52 @@
+@keyframes changed {
+  0% {
+    opacity: 0;
+    background: #e0cea0;
+  }
+
+  100% {
+    opacity: 1;
+    background: #fff;
+  }
+}
+
+.selectedEvent {
+  display: flex;
+  align-items: center;
+  background: #e0cea0;
+  opacity: 0;
+  animation: changed 1s step-start 0s infinite;
+  padding: 10px;
+  font-size: 14px;
+  border-bottom: 1px solid #666;
+
+  .competitorsAndDate {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .outcomeInfo {
+    flex: 0 0 100px;
+    display: flex;
+    font-size: 12px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .deleteArea {
+    flex: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+
+    .deleteButton {
+      flex: 1;
+      font-size: 12px;
+      font-weight: bold;
+      font-family: Verdana, sans-serif;
+      cursor: pointer;
+    }
+  }
+}

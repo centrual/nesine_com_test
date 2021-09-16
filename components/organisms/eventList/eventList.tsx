@@ -4,9 +4,12 @@ import type { EventListProps } from '@organisms/eventList/eventsList.types'
 import Styles from './eventList.module.scss'
 import { EventListRow } from '@molecules/eventListRow/eventListRow'
 import { ListRowProps } from 'react-virtualized/dist/es/List'
+import { useWindowSize } from '../../../hooks/useWindowSize'
+import { RowType } from '@molecules/eventListRow/eventListRow.types'
 
 const EventList = memo<EventListProps>((props) => {
   const { fixture, hasNextPage, loadNextPage, isNextPageLoading } = props
+  const { width } = useWindowSize()
 
   const rowCount = hasNextPage ? fixture.length + 1 : fixture.length
 
@@ -35,6 +38,21 @@ const EventList = memo<EventListProps>((props) => {
     return <EventListRow {...targetRow} key={key} style={style} />
   }
 
+  const getHeight = ({ index }: Index): number => {
+    if (
+      fixture[index].rowType === RowType.FIXTURE_DAY ||
+      fixture[index].rowType === RowType.LEAGUE_NAME
+    ) {
+      return 40
+    }
+
+    if (width != null && width > 768) {
+      return 40
+    }
+
+    return 80
+  }
+
   return (
     <InfiniteLoader
       isRowLoaded={isRowLoaded}
@@ -58,7 +76,7 @@ const EventList = memo<EventListProps>((props) => {
                   className={Styles.eventList}
                   width={width}
                   height={height}
-                  rowHeight={40}
+                  rowHeight={getHeight}
                   rowCount={fixture.length ?? 30}
                   ref={registerChild}
                   onRowsRendered={onRowsRendered}
