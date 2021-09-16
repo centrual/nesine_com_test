@@ -2,18 +2,20 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import mongoDbConnection from '../../lib/mongoDbConnection'
 import { Filter } from 'mongodb'
 import type {
+  DBEventsProjection,
   GetMatchesRequestData,
   GetMatchesResponseData,
-} from './getMatches.types'
-import { DBEventsProjection } from './getMatches.types'
+} from './getEvents.types'
 import { mapDbEventToEvent } from '../../lib/mappers/eventMapper'
 
-const getMatchesHandler = async (
+const getEventsHandler = async (
   req: NextApiRequest,
   res: NextApiResponse<GetMatchesResponseData>
 ): Promise<void> => {
   const data = req.query as unknown as GetMatchesRequestData
   const fetchAfterEventCode = parseInt(data.lastEventCode)
+
+  console.log(fetchAfterEventCode)
 
   const connection = await mongoDbConnection
   const collection = connection
@@ -44,16 +46,16 @@ const getMatchesHandler = async (
       LN: 1,
       OCG: 1,
     })
-    .sort({ ESD: 'asc', C: 'asc' })
-    .limit(31)
+    .sort({ ESD: 'asc', T: 'asc', C: 'asc' })
+    .limit(51)
     .toArray()
 
-  if (eventsInDb.length === 31) {
+  if (eventsInDb.length === 51) {
     eventsInDb.pop()
   }
 
   if (eventsInDb.length > 0) {
-    lastEventCode = eventsInDb[eventsInDb.length - 1].ESD
+    lastEventCode = eventsInDb[eventsInDb.length - 1].C
   }
 
   res.status(200).json({
@@ -63,4 +65,4 @@ const getMatchesHandler = async (
   })
 }
 
-export default getMatchesHandler
+export default getEventsHandler

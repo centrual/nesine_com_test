@@ -3,7 +3,7 @@ import {
   CouponProviderProps,
   SelectedEvent,
 } from '@providers/couponProvider.types'
-import type { Event } from '@components/eventsGrid/eventsGrid.types'
+import type { Event } from '@atoms/event/event.types'
 import BigNumber from 'bignumber.js'
 import { mapEventToSelectedEvent } from '../lib/mappers/eventMapper'
 
@@ -33,7 +33,7 @@ const CouponProvider = ({
     setSelectedEvents(selectedEvents.filter((f) => f.code !== eventCode))
   }
 
-  const addEvent = (
+  const toggleEvent = (
     event: Event,
     outcomeGroupId: string,
     outcomeId: string
@@ -41,6 +41,7 @@ const CouponProvider = ({
     const existingEventIndex = selectedEvents.findIndex(
       (f) => f.code === event.matchCode
     )
+
     const selectedEvent = mapEventToSelectedEvent(
       event,
       outcomeGroupId,
@@ -48,15 +49,38 @@ const CouponProvider = ({
     )
 
     if (existingEventIndex > -1) {
-      const firstPart = selectedEvents.slice(0, existingEventIndex - 1)
+      const firstPart = selectedEvents.slice(0, existingEventIndex)
       const secondPart = selectedEvents.slice(
         existingEventIndex + 1,
         selectedEvents.length - 1
       )
-      setSelectedEvents([...firstPart, selectedEvent, ...secondPart])
+
+      const existingEvent = selectedEvents[existingEventIndex]
+
+      if (
+        existingEvent.selectedOutcomeGroupId === outcomeGroupId &&
+        existingEvent.selectedOutcomeId === outcomeId
+      ) {
+        removeEvent(event.matchCode)
+      } else {
+        setSelectedEvents([...firstPart, selectedEvent, ...secondPart])
+      }
     } else {
       setSelectedEvents([...selectedEvents, selectedEvent])
     }
+  }
+
+  const isSelected = (
+    event: Event,
+    outcomeGroupId: string,
+    outcomeId: string
+  ): boolean => {
+    return selectedEvents.some(
+      (f) =>
+        f.code === event.matchCode &&
+        f.selectedOutcomeGroupId === outcomeGroupId &&
+        f.selectedOutcomeId === outcomeId
+    )
   }
 
   return (
@@ -65,7 +89,8 @@ const CouponProvider = ({
         cumulativeRate,
         selectedEvents,
         setSelectedEvents,
-        addEvent,
+        isSelected,
+        toggleEvent,
         removeEvent,
       }}
     >

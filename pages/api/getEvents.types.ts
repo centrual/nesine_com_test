@@ -1,4 +1,4 @@
-import { Event } from '@components/eventsGrid/eventsGrid.types'
+import { Event } from '@atoms/event/event.types'
 
 interface GetMatchesRequestData {
   lastEventCode: string
